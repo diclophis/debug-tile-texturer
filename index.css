@@ -1,21 +1,31 @@
 
+@overall-size: 1024px;
+@map-size: 256px;
+@map-tile-height: 16;
+@map-cell-width: ((@map-tile-height / @map-size) * @overall-size);
+
 html {
   background: #e0e0e0;
 }
+
 body {
   margin: 0; padding: 0;
-  width: 1024px; height: 1024px;
+  width: @overall-size; height: @overall-size;
   background-image: url(0.png);
   background-size: 100% 100%;
   background-position: center center;
 }
+
 div {
-  width: (16.0% / 256.0%) * 100.0;
-  height: 6.2%;
-  border: solid red;
-  border-width: 0px 1px 1px 0px;
+  width: @map-cell-width;
+  height: @map-cell-width;
   float: left;
 }
-p {
-  margin: 0.5em 0 0 0.5em;
+
+div div {
+  margin: 0;
+  padding: 0.25em;
+  border: (@map-cell-width * 0.045) solid red;
+  width: (@map-cell-width) - ((@map-cell-width * 0.1) * 2.0);
+  height: (@map-cell-width) - ((@map-cell-width * 0.1) * 2.0);
 }
