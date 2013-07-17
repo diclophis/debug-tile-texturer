@@ -1,0 +1,21 @@
+
+html {
+  background: #e0e0e0;
+}
+body {
+  margin: 0; padding: 0;
+  width: 1024px; height: 1024px;
+  background-image: url(0.png);
+  background-size: 100% 100%;
+  background-position: center center;
+}
+div {
+  width: (16.0% / 256.0%) * 100.0;
+  height: 6.2%;
+  border: solid red;
+  border-width: 0px 1px 1px 0px;
+  float: left;
+}
+p {
+  margin: 0.5em 0 0 0.5em;
+}
