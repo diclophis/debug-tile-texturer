@@ -1,4 +1,4 @@
 # OSX Makefile
 
 wang.png: index.html
-	phantomjs rasterize.js index.html wang.png
+	phantomjs --debug=false rasterize.js index.html wang.png
