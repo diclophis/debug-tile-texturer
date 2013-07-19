@@ -4,7 +4,6 @@ var page = require('webpage').create(),
 
 if (system.args.length == 4) {
   address = system.args[1];
-  console.log(address);
   output = system.args[2];
   size = system.args[3];
   page.viewportSize = { width: size, height: size };
