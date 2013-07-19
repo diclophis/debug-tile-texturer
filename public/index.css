@@ -1,21 +1,24 @@
 
-@overall-size: 1024px;
-@map-size: 256.0;
-@map-tile-height: 16.0;
-@map-cell-total: ceil((@map-tile-height / @map-size) * @overall-size);
-@map-cell-width: ceil(@map-cell-total * 0.8);
-@map-cell-border-width: (@map-cell-total * 0.1);
+@overall-size: overall_size();
+@map-size: map_size();
+@map-subdivide: map_subdivide();
+@map-cell-total: ((@map-subdivide / @map-size) * @overall-size);
+@map-cell-width: (@map-cell-total) - ((1.0 / 32.0) * @map-cell-total);
+@map-cell-border-width: ((1.0 / 32.0) * @map-cell-total) / 2.0;
 
 html {
-  background: #e0e0e0;
+  background: rgba(0.0, 0.0, 0.0, 0.0);
 }
 
 body {
   margin: 0; padding: 0;
   width: @overall-size; height: @overall-size;
+}
+
+section {
+  width: @overall-size; height: @overall-size;
   background-image: url(0.png);
   background-size: 100% 100%;
-  background-position: center center;
 }
 
 div {
@@ -29,5 +32,6 @@ div {
 
 p {
   margin: 0;
-  padding: 0.25em;
+  padding: @overall-size / 128.0;
+  font-size: @overall-size / 60.0;
 }

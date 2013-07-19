@@ -1,17 +1,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet/less" type="text/css" href="index.css"></link>
-    <script src="less-1.4.1.min.js"></script>
+    <script src="cookies.js"></script>
     <script>
+      less = {
+        functions: {
+          overall_size: function() {
+            return new(less.tree.Dimension)(docCookies.getItem('viewportSize') || 512);
+          },
+          map_size: function() {
+            return new(less.tree.Dimension)(256);
+          },
+          map_subdivide: function() {
+            return new(less.tree.Dimension)(16);
+          }
+        }
+      };
       window.addEventListener('load', function() {
-        console.log(document.body);
+        var section = document.createElement('section');
+        document.body.appendChild(section);
         for (var i=0; i<(16*16); i++) {
           var div = document.createElement('div');
           div.innerHTML = '<p>' + (Math.floor(i / 16)) + ', ' + (i % 16) + '</p>';
-          document.body.appendChild(div);
+          section.appendChild(div);
         }
       });
     </script>
+    <link rel="stylesheet/less" type="text/css" href="index.css"></link>
+    <script src="less-1.4.1.min.js"></script>
   </head>
 </html>
