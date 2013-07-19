@@ -3,19 +3,33 @@
     <meta charset="utf-8">
     <script src="cookies.js"></script>
     <script>
+      sprite = {
+        map: {
+          size: 256,
+          subdivide: 16,
+          top: 0,
+          left: 0,
+          image: "0.png"
+        },
+      };
+      console.log(docCookies.getItem('viewportSize'));
       less = {
         functions: {
           overall_size: function() {
             return new(less.tree.Dimension)(docCookies.getItem('viewportSize') || 512);
           },
-          map_size: function() {
-            return new(less.tree.Dimension)(256);
-          },
-          map_subdivide: function() {
-            return new(less.tree.Dimension)(16);
-          }
         }
       };
+      for (var i in sprite) {
+        console.log(sprite[i]);
+        less.functions[i + "_size"] = function() {
+          return new(less.tree.Dimension)(sprite[i].size);
+        };
+        less.functions[i + "_subdivide"] = function() {
+          return new(less.tree.Dimension)(sprite[i].subdivide);
+        };
+      };
+
       window.addEventListener('load', function() {
         var section = document.createElement('section');
         document.body.appendChild(section);
