@@ -1,0 +1,44 @@
+html {
+  background: rgba(0.0, 0.0, 0.0, 0.0);
+}
+
+body {
+  margin: 0; padding: 0;
+  width: @overall-size; height: @overall-size;
+}
+
+@overall-size: overall_size();
+
+.createSprite(@sprite) {
+
+  @map-size: sprite_size(@sprite);
+  @map-subdivide: sprite_subdivide(@sprite);
+  @map-cell-total: ((@map-subdivide / @map-size) * @overall-size);
+  @map-cell-width: (@map-cell-total) - ((1.0 / 32.0) * @map-cell-total);
+  @map-cell-border-width: ((1.0 / 32.0) * @map-cell-total) / 2.0;
+  @map-top: 0;
+  @map-left: 0;
+
+  section#@{sprite} {
+    width: @overall-size; height: @overall-size;
+    background-image: url(0.png);
+    background-size: 100% 100%;
+    background-position: @map-top @map-left;
+    div {
+      float: left;
+      margin: 0;
+      border: solid red;
+      border-width: @map-cell-border-width;
+      width: (@map-cell-width);
+      height: (@map-cell-width);
+    }
+
+    p {
+      margin: 0;
+      padding: @overall-size / 128.0;
+      font-size: @overall-size / 60.0;
+    }
+  }
+}
+
+.createSprite(~"map"); 

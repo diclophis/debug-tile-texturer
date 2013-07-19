@@ -18,8 +18,15 @@
           overall_size: function() {
             return new(less.tree.Dimension)(docCookies.getItem('viewportSize') || 512);
           },
+          sprite_size: function(what) {
+            return new(less.tree.Dimension)(sprite[what.value].size);
+          },
+          sprite_subdivide: function(what) {
+            return new(less.tree.Dimension)(sprite[what.value].subdivide);
+          },
         }
       };
+      /*
       for (var i in sprite) {
         console.log(sprite[i]);
         less.functions[i + "_size"] = function() {
@@ -29,18 +36,22 @@
           return new(less.tree.Dimension)(sprite[i].subdivide);
         };
       };
+      */
 
       window.addEventListener('load', function() {
-        var section = document.createElement('section');
-        document.body.appendChild(section);
-        for (var i=0; i<(16*16); i++) {
-          var div = document.createElement('div');
-          div.innerHTML = '<p>' + (Math.floor(i / 16)) + ', ' + (i % 16) + '</p>';
-          section.appendChild(div);
+        for (var i in sprite) {
+          var section = document.createElement('section');
+          section.id = i;
+          document.body.appendChild(section);
+          for (var i=0; i<(16*16); i++) {
+            var div = document.createElement('div');
+            div.innerHTML = '<p>' + (Math.floor(i / 16)) + ', ' + (i % 16) + '</p>';
+            section.appendChild(div);
+          }
         }
       });
     </script>
-    <link rel="stylesheet/less" type="text/css" href="index.css"></link>
+    <link rel="stylesheet/less" type="text/css" href="style.css"></link>
     <script src="less-1.4.1.min.js"></script>
   </head>
 </html>
