@@ -1,43 +1,37 @@
+<!DOCTYPE HTML>
 <html>
   <head>
     <meta charset="utf-8">
+    <title>debug-texturer</title>
     <script src="cookies.js"></script>
     <script>
-      sprite = {
+      var sprite = {
         map: {
           size: 256,
           subdivide: 16,
-          top: 0,
-          left: 0,
+          position: "0 0",
           image: "0.png"
         },
       };
-      console.log(docCookies.getItem('viewportSize'));
-      less = {
+      var less = window.less = {
         functions: {
           overall_size: function() {
-            return new(less.tree.Dimension)(docCookies.getItem('viewportSize') || 512);
+            return new(less.tree.Dimension)(docCookies.getItem('viewportSize') || 512, "px");
           },
           sprite_size: function(what) {
-            return new(less.tree.Dimension)(sprite[what.value].size);
+            return new(less.tree.Dimension)(sprite[what.value].size, "px");
           },
           sprite_subdivide: function(what) {
-            return new(less.tree.Dimension)(sprite[what.value].subdivide);
+            return new(less.tree.Dimension)(sprite[what.value].subdivide, "px");
+          },
+          sprite_image: function(what) {
+            return new(less.tree.Anonymous)(sprite[what.value].image);
+          },
+          sprite_position: function(what) {
+            return new(less.tree.Anonymous)(sprite[what.value].position);
           },
         }
       };
-      /*
-      for (var i in sprite) {
-        console.log(sprite[i]);
-        less.functions[i + "_size"] = function() {
-          return new(less.tree.Dimension)(sprite[i].size);
-        };
-        less.functions[i + "_subdivide"] = function() {
-          return new(less.tree.Dimension)(sprite[i].subdivide);
-        };
-      };
-      */
-
       window.addEventListener('load', function() {
         for (var i in sprite) {
           var section = document.createElement('section');
@@ -51,7 +45,7 @@
         }
       });
     </script>
-    <link rel="stylesheet/less" type="text/css" href="style.css"></link>
+    <link rel="stylesheet/less" type="text/css" href="style.less">
     <script src="less-1.4.1.min.js"></script>
   </head>
 </html>
