@@ -5,7 +5,7 @@ var sprite = {
     size: 256,
     subdivide: 16,
     position: "0 0",
-    image: "0.png"
+    image: window.location.search.replace("?", "")
   },
 };
 var less = window.less = {
