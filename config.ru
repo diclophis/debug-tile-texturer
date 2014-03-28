@@ -1,6 +1,3 @@
-
-
-
-map "http://localhost/" do
+map "/" do
   run Rack::Directory.new("public")
 end

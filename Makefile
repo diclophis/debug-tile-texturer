@@ -7,7 +7,7 @@ PIDFILE := $(shell mktemp -t rackup)
 open: sprite.png
 	open sprite.png
 
-sprite.png: $(PHANTOM) public/* rasterize.js
+sprite.png: $(PHANTOM) public/* rasterize.js config.ru
 	rackup & echo "$$!" > $(PIDFILE)
 	$(PHANTOM) --debug=false rasterize.js http://localhost:9292/index.html sprite.png $(SIZE) > sprite.dat
 	cat $(PIDFILE) | xargs -I{} kill -kill {}
